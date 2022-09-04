@@ -30,14 +30,14 @@ public class BookEditServlet extends HttpServlet {
         String title = req.getParameter("title");
         String description = req.getParameter("description");
         double price = Double.parseDouble(req.getParameter("price"));
-       // int authorId = Integer.parseInt(req.getParameter("authorId"));
+        int authorId = Integer.parseInt(req.getParameter("authorId"));
 
         Book book = Book.builder()
                 .id(bookId)
                 .title(title)
                 .description(description)
                 .price(price)
-               // .author(authorManager.getAuthorById(authorId))
+                .author(authorManager.getAuthorById(authorId))
                 .build();
         bookManager.updateBook(book);
         resp.sendRedirect("/book/edit");
