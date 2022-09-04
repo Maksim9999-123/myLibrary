@@ -80,16 +80,20 @@ public class AuthorManager {
     }
 
     public void updateAuthor(Author author) {
-        try {
-            Statement statement = conn.createStatement();
-            String query = String.format("UPDATE user SET name = '%s', surname = '%s', email='%s',age='%s' WHERE id=" + author.getId(),
-                    author.getName(), author.getSurname(), author.getEmail(), author.getAge());
-            System.out.println(query);
-            statement.executeUpdate(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            String sql = "update author set name = ?, surname = ?, email = ?, age = ? where id = ?";
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setString(1, author.getName());
+                preparedStatement.setString(2, author.getSurname());
+                preparedStatement.setString(3, author.getEmail());
+                preparedStatement.setInt(4, author.getAge());
+                preparedStatement.setInt(5, author.getId());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
+
 
     public void deleteAuthor(int id) {
         String sql = "DELETE from author where id = " + id;

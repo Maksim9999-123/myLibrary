@@ -16,21 +16,20 @@ public class AuthorEditServlet extends HttpServlet {
     private AuthorManager authorManager = new AuthorManager();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int authorId = Integer.parseInt(req.getParameter("authorId"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int authorId = Integer.parseInt(request.getParameter("authorId"));
         Author author = authorManager.getAuthorById(authorId);
-        req.setAttribute("author", author);
-        req.getRequestDispatcher("/WEB-INF/editAuthor.jsp").forward(req, resp);
+        request.setAttribute("author", author);
+        request.getRequestDispatcher("/WEB-INF/editAuthor.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int authorId = Integer.parseInt(req.getParameter("authorId"));
-        String name = req.getParameter("name");
-        String surname = req.getParameter("surname");
-        String email = req.getParameter("email");
-        int age = Integer.parseInt(req.getParameter("age"));
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        int authorId = Integer.parseInt(request.getParameter("authorId"));
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        int age = Integer.parseInt(request.getParameter("age"));
         Author author = Author.builder()
                 .id(authorId)
                 .name(name)
@@ -39,6 +38,9 @@ public class AuthorEditServlet extends HttpServlet {
                 .age(age)
                 .build();
         authorManager.updateAuthor(author);
+
         resp.sendRedirect("/get/author");
     }
+
 }
+

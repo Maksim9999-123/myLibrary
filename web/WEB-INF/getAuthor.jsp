@@ -34,8 +34,8 @@
         <td><%=authors.getAge()%>
         </td>
 
-        <td><a href="/delete/Author?authorId=<%=authors.getId()%>">Delete</a> | <a
-                href="/author/edit?authorId<%=authors.getId()%>">Edit</a></td>
+        <td><a href="/delete/Author?authorId=<%=authors.getId()%>">Delete</a> | <a href="/author/edit?authorId<%=authors.getId()%>">Edit</a></td>
+
 
     </tr>
     <% }
