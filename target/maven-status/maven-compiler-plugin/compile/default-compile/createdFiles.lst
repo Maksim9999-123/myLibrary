@@ -1,0 +1,13 @@
+servlet\AddAuthorServlet.class
+servlet\DeleteBookServlet.class
+manager\AuthorManager.class
+dbpoolconnection\ConnectionPool.class
+manager\BookManager.class
+dbpoolconnection\DBConnectionProvider.class
+model\Author.class
+servlet\GetAuthorServlet.class
+model\Book$BookBuilder.class
+servlet\AddBookServlet.class
+model\Book.class
+servlet\GetBookServlet.class
+model\Author$AuthorBuilder.class

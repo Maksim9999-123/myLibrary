@@ -14,7 +14,7 @@ public class ConnectionPool {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/my_library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DB_NAME = "root";
     private static final String DB_PASSWORD = "root";
-    private int maxPoolSize = 100;
+    private int maxPoolSize = 5;
     private int connNum = 0;
 
     private static final String SQL_VERIFYCONN = "select 1";
