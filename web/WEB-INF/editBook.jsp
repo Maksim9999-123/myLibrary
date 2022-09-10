@@ -14,7 +14,8 @@ Please input Book data:
     <input type="text" name="title" value="<%=book.getTitle()%>"/> <br>
     <input type="text" name="description" value="<%=book.getDescription()%>"/> <br>
     <input type="number" name="price" value="<%=book.getPrice()%>"/> <br>
-    <input type="submit" value="add book">
+    <input type="file" name="bookPic">
+    <input type="submit" value="Edit Book">
 </form>
 </body>
 </html>

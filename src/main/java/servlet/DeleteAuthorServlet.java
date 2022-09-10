@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/delete/Author")
+@WebServlet(urlPatterns = "/deleteAuthor")
 public class DeleteAuthorServlet extends HttpServlet {
     AuthorManager authorManager = new AuthorManager();
 

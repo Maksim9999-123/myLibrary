@@ -12,10 +12,11 @@
 %>
 <h1>Add Book</h1>
 Please input book data:
-<form action="/add/Book" method="post" >
+<form action="/add/Book" method="post" enctype="multipart/form-data" >
     <input type="text" name="title" placeholder="Please Input Title"/> <br>
     <input type="text" name="description" placeholder="Please Input description"/> <br>
     <input type="number" name="price"/> <br>
+    <input type="file" name = "bookPic">
     <select name="authorId">
         <%
             for (Author author : authors) {%>

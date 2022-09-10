@@ -15,6 +15,7 @@
     <input type="text" name="surname" value="<%=author.getSurname()%>"><br>
     <input type="email" name="email" value="<%=author.getEmail()%>"><br>
     <input type="number" name="age" min="20" max="100" value="<%=author.getAge()%>"><br>
+
     <input type="submit" value="UPDATE AUTHOR">
 </form>
 </body>

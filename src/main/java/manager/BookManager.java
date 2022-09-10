@@ -1,6 +1,7 @@
 package manager;
 
 
+import dbpoolconnection.ConnectionPool;
 import dbpoolconnection.DBConnectionProvider;
 import model.Book;
 
@@ -11,12 +12,15 @@ import java.util.List;
 public class BookManager {
 
     private AuthorManager authorManager = new AuthorManager();
-    private Connection conn = DBConnectionProvider.getProvider().getConnection();
 
+    private ConnectionPool pool = new ConnectionPool();
+    // private Connection conn = DBConnectionProvider.getProvider().getConnection();
+    private Connection conn = null;
 
     public void addBook(Book book) {
         String sql = "insert into book (title,decription,price,author_id) values(?,?,?,?)";
         try {
+            Connection conn = pool.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getDescription());
@@ -38,6 +42,7 @@ public class BookManager {
         String sql = "select * from book";
         List<Book> resault = new ArrayList<>();
         try {
+            Connection conn = pool.getConnection();
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -60,6 +65,7 @@ public class BookManager {
     public void deleteBook(int id) {
         String sql = "DELETE from book where id = " + id;
         try {
+            Connection conn = pool.getConnection();
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException throwables) {
@@ -69,6 +75,7 @@ public class BookManager {
 
     public void updateBook(Book book) {
         try {
+            Connection conn = pool.getConnection();
             Statement statement = conn.createStatement();
             String query = String.format("UPDATE book SET title = '%s', decription = '%s', price ='%s', WHERE id=" + book.getId(),
                     book.getTitle(), book.getDescription(), book.getPrice());
@@ -82,6 +89,7 @@ public class BookManager {
     public Book getBookById(int id) {
         String sql = "SELECT * FROM book WHERE id=" + id;
         try {
+            Connection conn = pool.getConnection();
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {

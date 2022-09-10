@@ -12,6 +12,7 @@
 
 <table border="1">
     <tr>
+        <th>BookPic</th>
         <th>id</th>
         <th>title</th>
         <th>description</th>
@@ -22,6 +23,9 @@
         for (Book books : book) {
     %>
     <tr>
+        <td>
+            <%=books.getBookPic()%>
+        </td>
         <td><%=books.getId()%>
         </td>
         <td><%=books.getTitle()%>
@@ -33,8 +37,9 @@
         <td><%=books.getAuthor().getId()%>
         </td>
 
-        <td><a href="/delete/Book?bookId=<%=books.getId()%>">Delete</a> | <a
-                href="/book/edit?bookId=<%=books.getId()%>">Edit</a>
+
+        <td><a href="/delete/Book?bookId=<%=books.getId()%>">Delete</a> |
+            <a   href="/book/edit?bookId=<%=books.getId()%>">Edit</a>
         </td>
     </tr>
     <% }
